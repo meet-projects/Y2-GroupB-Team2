@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <center>
+    <div class="center">
+      <div class="container">
+        <h3>Chat Room</h3>
+        <div id="chat-messages">
+          {% for message in messages %}
+            <p>
+              <strong>{{ message['sender'] }}:</strong> {{ message['content'] }}
+              {% if message['sender'] == login_session['user']['email'] %}
+              <form method="post" 
+              action="/remove_message/{{ message['id'] }}" style="display: inline-block;">
+  <input type="submit" value="Remove">
+</form>
+              {% endif %}
+            </p>
+          {% endfor %}
+        </div>
+       <form method="post" action="/chat">
+    <input type="text" name="message" placeholder="Type your message..." required>
+    <input type="submit" value="Send">
+</form>
+
+      </div>
+    </div>
+  </center>
+  <a href="/home" id="go_back"><button>go back</button></a>
+</body>
+</html>

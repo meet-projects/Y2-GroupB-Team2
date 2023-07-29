@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signin</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+<center>
+  <div class="center">
+    <div class="container">
+      <form method="post" action="/signin">
+        <!-- Heading -->
+        <h4>Welcome back!</h4>
+
+       
+        <p>Please fill up your information below to sign in.</p>
+
+       
+        <div>
+          <label>Email address*</label>
+          <div>
+            <input type="email" name="email" id="emailStr" required>
+          </div>
+        </div>
+
+        <div>
+          <label>Password*</label>
+          <input type="password" name="password" minlength="6">
+        </div>
+
+        <br>
+        <div>
+          <input type="submit" value="Sign In">
+        </div>
+      </form>
+      <br>
+      <p>Don't have an account?</p>
+      <a href="/signup"><button>Create an account</button></a>
+    </div>
+  </div>
+</center>
+</body>
+</html>
