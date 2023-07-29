@@ -1,44 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Signin</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signin</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <style>
+        body {
+            background-color: #FDF3D0; /* Light Beige */
+            font-family: "Roboto", sans-serif; /* Google Font */
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #FFFFFF; /* White container background */
+            border-radius: 10px;
+        }
+
+        h4 {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        form input[type="email"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #A0A0A0; 
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        form input[type="submit"] {
+            background-color: #edd328; 
+            color: #000000; 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #A0A0A0; 
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #edd328;
+            color: #000000; 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #A0A0A0; 
+        }
+    </style>
 </head>
 <body>
-<center>
-  <div class="center">
-    <div class="container">
-      <form method="post" action="/signin">
-        <!-- Heading -->
-        <h4>Welcome back!</h4>
-
-       
-        <p>Please fill up your information below to sign in.</p>
-
-       
-        <div>
-          <label>Email address*</label>
-          <div>
-            <input type="email" name="email" id="emailStr" required>
-          </div>
+    <div class="center">
+        <div class="container">
+            <form method="post" action="/signin">
+                <!-- Heading -->
+                <h4>Welcome back!</h4>
+                <p>Please fill up your information below to sign in.</p>
+                <div>
+                    <label>Email address*</label>
+                    <div>
+                        <input type="email" name="email" id="emailStr" required>
+                    </div>
+                </div>
+                <div>
+                    <label>Password*</label>
+                    <input type="password" name="password" minlength="6">
+                </div>
+                <br>
+                <div>
+                    <input type="submit" value="Sign In">
+                </div>
+            </form>
+            <br>
+            <p>Don't have an account?</p>
+            <a href="/signup"><button>Create an account</button></a>
         </div>
-
-        <div>
-          <label>Password*</label>
-          <input type="password" name="password" minlength="6">
-        </div>
-
-        <br>
-        <div>
-          <input type="submit" value="Sign In">
-        </div>
-      </form>
-      <br>
-      <p>Don't have an account?</p>
-      <a href="/signup"><button>Create an account</button></a>
     </div>
-  </div>
-</center>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

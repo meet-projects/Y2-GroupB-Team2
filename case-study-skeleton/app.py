@@ -56,7 +56,7 @@ def signin():
 def signup():
     error = ""
     if request.method == 'POST':
-        my_name = request.form['name']  
+        name = request.form['name']  
         email = request.form['email']
         password = request.form['password']
         try:
