@@ -1,42 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>Chat</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <center>
-    <div class="center">
-      <div class="container">
-        <h3>Chat Room</h3>
-        <div id="chat-messages">
-          {% for message in messages %}
-            <p>
-              <strong>{{ message['sender'] }}:</strong> {{ message['content'] }}
-              {% if message['sender'] == login_session['user']['email'] %}
-              <form method="post" 
-              action="/remove_message/{{ message['id'] }}" style="display: inline-block;">
-  <input type="submit" value="Remove">
-</form>
-              {% endif %}
-            </p>
-          {% endfor %}
-        </div>
-       <form method="post" action="/chat">
-    <input type="text" name="message" placeholder="Type your message..." required>
-    <input type="submit" value="Send">
-</form>
-
-      </div>
-    </div>
-  </center>
-  <a href="/home" id="go_back"><button>go back</button></a>
-</body>
-</html>
- -->
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -46,13 +8,24 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
   <style>
     body {
       background-color: #FDF3D0; 
       font-family: "Roboto", sans-serif;
       text-align: center;
       margin-top: 50px;
+    }
+
+    .navbar {
+      background-color: #edd328; 
+    }
+
+    .navbar-brand, .navbar-nav .nav-link {
+      color: #000000; 
+    }
+
+    .navbar-brand:hover, .navbar-nav .nav-link:hover {
+      color: #A0A0A0; 
     }
 
     .center {
@@ -123,6 +96,29 @@
   </style>
 </head>
 <body>
+  <!-- Bootstrap Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand" href="#">Ukko/Celiac</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/recipes'>Recipe Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/questions'>Questions Page</a>
+                    </li>
+                </ul>
+            </div>
+        
+    </nav>
+
   <div class="center">
     <div class="container">
       <h3>Chat Room</h3>
@@ -132,10 +128,7 @@
             <strong>{{ message['sender'] }}:</strong> {{ message['content'] }}
             
             {% if message['email'] == login_session['user']['email'] %}
-
-            <form method="post" 
-
-              action="/remove_message/{{ message['message_id'] }}" style="display: inline-block;">
+            <form method="post" action="/remove_message/{{ message['message_id'] }}" style="display: inline-block;">
               <input type="submit" value="Remove">
             </form>
             {% endif %}
@@ -148,9 +141,8 @@
       </form>
     </div>
   </div>
-  <a href="/home" id="go_back"><button>go back</button></a>
-  <br>
   
+  <br>
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
