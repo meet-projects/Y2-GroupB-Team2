@@ -10,55 +10,60 @@
 
 <style>
 
-
   body {
-font-family: 'Roboto', sans-serif;
- 
-  background-color: #FDF3D0;
-  margin: 0;
-  padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FDF3D0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .faq-item {
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+
+  .answer {
+    display: none;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #edd328;
+    border-radius: 5px;
+    color: #fff;
+  }
+
+  .faq-item .question::after {
+  content: "\25AA"; /* Unicode for black square ▪ */
+  margin-left: 5px;
+  font-size: 40px; /* Adjust the font-size to make the cubes bigger */
 }
 
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  .faq-item .question:hover::after {
+    color: yellow; /* Change the color to yellow on hover */
+  }
 
-h1 {
-  text-align: center;
-}
-
-.faq-item {
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-
-
-.answer {
-  display: none;
-  margin-top: 5px;
-  padding: 10px;
-  background-color: #edd328;
-  border-radius: 5px;
-  color: #fff;
-}
    .navbar {
-            background-color: #edd328; 
-        }
+    background-color: #edd328; 
+  }
 
-        .navbar-brand, .navbar-nav .nav-link {
-            color: #000000; 
-        }
+  .navbar-brand, .navbar-nav .nav-link {
+    color: #000000; 
+  }
 
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #A0A0A0; 
-        }
-
-
+  .navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #A0A0A0; 
+  }
 </style>
 </head>
 <body>
@@ -85,41 +90,36 @@ h1 {
     </nav>
 </div>
   <br><br><br>
+  <h1>Q&A Page</h1>
   <div class="container">
-    <h1>Q&A Page</h1>
+    
     <ul id="faq-list">
       <li class="faq-item">
-        <div class="question">Where can I find/buy Ukko’s safe flour? +
-</div>
+        <div class="question">Where can I find/buy Ukko’s safe flour?</div>
         <div class="answer">Answer1</div>
       </li>
       <li class="faq-item">
-        <div class="question"> Is it safe for people with allergies to eat Ukko safe flour? Has it been tested?
-+</div>
+        <div class="question">Is it safe for people with allergies to eat Ukko safe flour? Has it been tested?</div>
         <div class="answer">Answer2</div>
       </li>
       <li class="faq-item">
-        <div class="question">Does it taste different from regular flour? +</div>
+        <div class="question">Does it taste different from regular flour?</div>
         <div class="answer">Answer3</div>
       </li>
       <li class="faq-item">
-        <div class="question">What are the differences between regular flour and Ukko’s safe flour+
-        </div>
+        <div class="question">What are the differences between regular flour and Ukko’s safe flour</div>
         <div class="answer">Answer4</div>
       </li>
       <li class="faq-item">
-        <div class="question"> Does Ukko’s safe flour have a different expiration Date than regular flour?+
-        </div>
+        <div class="question">Does Ukko’s safe flour have a different expiration Date than regular flour?</div>
         <div class="answer">Answer5</div>
       </li>
         <li class="faq-item">
-        <div class="question"> How do you create safe flour?+
-        </div>
+        <div class="question">How do you create safe flour?</div>
         <div class="answer">Answer6</div>
       </li>
       <li class="faq-item">
-        <div class="question"> How can we contact you?+
-        </div>
+        <div class="question">How can we contact you?</div>
         <div class="answer">Answer7</div>
       </li>
     </ul>
