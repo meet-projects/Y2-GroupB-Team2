@@ -130,9 +130,12 @@
         {% for message in messages %}
           <p>
             <strong>{{ message['sender'] }}:</strong> {{ message['content'] }}
-            {% if message['sender'] == login_session['user']['email'] %}
+            
+            {% if message['email'] == login_session['user']['email'] %}
+
             <form method="post" 
-              action="/remove_message/{{ message['id'] }}" style="display: inline-block;">
+
+              action="/remove_message/{{ message['message_id'] }}" style="display: inline-block;">
               <input type="submit" value="Remove">
             </form>
             {% endif %}

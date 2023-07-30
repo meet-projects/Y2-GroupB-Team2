@@ -62,6 +62,8 @@ def signup():
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             UID = login_session['user']['localId']
+            new_user={"name":name, "email":email, "password":password}
+            db.child("users").child("uid").child(UID).set(new_user)
             return redirect(url_for('home'))
         except:
             error = "Authentication failed"
@@ -74,15 +76,23 @@ def chat():
     if request.method == 'POST':
         message = request.form['message']
         if message.strip() != "":
-            sender = login_session['user']['email']
-            store_chat_message(sender, message)
+            UID = login_session['user']['localId']
+            my_user=db.child("users").child("uid").child(UID).get().val()
+            
+            print(my_user["name"])
+            sender = my_user["name"]
+            my_email=my_user["email"]
+            store_chat_message(sender, message,my_email)
     messages = get_chat_messages()
     return render_template('chat.html', messages=messages, login_session=login_session)
 
-def store_chat_message(sender, message):
+def store_chat_message(sender, message, my_email):
     try:
-        new_message_ref = db.child("messages").push({"sender": sender, "content": message})
-        message_id = new_message_ref.key()  
+
+        new_message_ref = db.child("messages").push({"sender": sender, "content": message, "email":my_email})
+        print(new_message_ref)
+        message_id = new_message_ref["name"]  
+        print(message_id)
         db.child("messages").child(message_id).update({"message_id": message_id})
     except Exception as e:
         print("Error storing message:", e)
@@ -98,11 +108,12 @@ def get_chat_messages():
         print("Error fetching messages:", e)
         return []
 
-@app.route('/remove_message/<message_id>')
+@app.route('/remove_message/<message_id>',methods=['GET', 'POST'])
 def remove_message(message_id):
     try:
         message = db.child("messages").child(message_id).get().val()
-        if message and message.get('sender') == login_session['user']['email']:
+        print(message.get('email'))
+        if message and message.get('email') == login_session['user']['email']:
             db.child("messages").child(message_id).remove()
     except Exception as e:
         print("Error removing message:", e)
