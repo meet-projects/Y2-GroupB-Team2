@@ -63,7 +63,7 @@ def signup():
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             UID = login_session['user']['localId']
             new_user={"name":name, "email":email, "password":password}
-            db.child("users").child("uid").child(UID).set(new_user)
+            db.child("users").child(UID).set(new_user)
             return redirect(url_for('home'))
         except:
             error = "Authentication failed"
@@ -77,9 +77,7 @@ def chat():
         message = request.form['message']
         if message.strip() != "":
             UID = login_session['user']['localId']
-            my_user=db.child("users").child("uid").child(UID).get().val()
-            
-            print(my_user["name"])
+            my_user=db.child("users").child(UID).get().val()
             sender = my_user["name"]
             my_email=my_user["email"]
             store_chat_message(sender, message,my_email)
