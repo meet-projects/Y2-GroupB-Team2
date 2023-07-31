@@ -25,12 +25,14 @@
     .container {
       max-width: 400px;
       padding: 20px;
-      background-color: #FFFFFF; 
+      background-color: #F4D857; /* Custom yellow background */
       border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
     }
 
     h3 {
       margin-bottom: 20px;
+      color: #222222; /* Dark gray color for headings */
     }
 
     form label {
@@ -50,16 +52,33 @@
     }
 
     form input[type="submit"] {
-      background-color: #edd328; 
-      color: #000000;
+      background-color: #222222; /* Dark gray background for the submit button */
+      color: #ffffff; /* White text color for the submit button */
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease; /* Add transition effect */
     }
 
     form input[type="submit"]:hover {
-      background-color: #A0A0A0; 
+      background-color: #333333; /* Slightly darker gray on hover */
+    }
+    
+    /* Animation for the sign-up container */
+    .container {
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -67,6 +86,7 @@
   <div class="center">
     <div class="container">
       <form method="post" action="/signup">
+        <!-- Heading -->
         <h3>Create an account</h3>
         <p>Please fill up your information below to join!.</p>
         <div>

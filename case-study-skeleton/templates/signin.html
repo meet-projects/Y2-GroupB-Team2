@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signin</title>
+    <title>Sign In</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -28,12 +28,14 @@
         .container {
             max-width: 400px;
             padding: 20px;
-            background-color: #FFFFFF; /* White container background */
+            background-color: #F4D857; /* Custom yellow background */
             border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
         }
 
         h4 {
             margin-bottom: 20px;
+            color: #222222; /* Dark gray color for headings */
         }
 
         form label {
@@ -52,16 +54,17 @@
         }
 
         form input[type="submit"] {
-            background-color: #edd328; 
-            color: #000000; 
+            background-color: #222222; /* Dark gray background for the submit button */
+            color: #ffffff; /* White text color for the submit button */
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Add transition effect */
         }
 
         form input[type="submit"]:hover {
-            background-color: #A0A0A0; 
+            background-color: #333333; /* Slightly darker gray on hover */
         }
 
         a {
@@ -69,17 +72,34 @@
         }
 
         button {
-            background-color: #edd328;
-            color: #000000; 
+            background-color: #222222; /* Dark gray background for buttons */
+            color: #ffffff; /* White text color for buttons */
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background-color 0.3s ease; /* Add transition effect */
         }
 
         button:hover {
-            background-color: #A0A0A0; 
+            background-color: #333333; /* Slightly darker gray on hover */
+        }
+
+        /* Animation for the sign-in container */
+        .container {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
