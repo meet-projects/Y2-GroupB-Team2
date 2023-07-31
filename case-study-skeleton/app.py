@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 import pyrebase
+import requests
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'super-secret-key'
 
-#Code goes below here
-
+EDAMAM_API_ID = "22460e3a"
+EDAMAM_API_KEY = "14f017a7efce49aeba9d6a9d1a072223"
 
 config = {
   "apiKey": "AIzaSyC_bDgCFc_cRR7ox7l9Mi18qW5GYdcRTmg",
@@ -34,9 +35,35 @@ def home():
 def questions():
     return render_template('/questions.html')
 
-@app.route('/recipes')
+@app.route("/recipes", methods=["GET", "POST"])
 def recipes():
-    return render_template('/recipes.html') 
+    recipes = None
+    if request.method == "POST":
+        food_query = request.form["food_query"]
+        if food_query.strip():
+            recipes = get_recipes(food_query)
+    return render_template("recipes.html", recipes=recipes, query=request.form.get("food_query", ""))
+
+def get_recipes(food_query):
+    base_url = "https://api.edamam.com/search"
+    params = {
+        "q": food_query,
+        "app_id": EDAMAM_API_ID,
+        "app_key": EDAMAM_API_KEY,
+    }
+
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    if "hits" in data:
+        recipes = [hit["recipe"] for hit in data["hits"]]
+        for recipe in recipes:
+            for ingredient in recipe["ingredients"]:
+                if "flour" in ingredient["text"].lower():
+                    ingredient["text"] = ingredient["text"].replace("flour", "'Ukko safe flour'")
+        return recipes
+    else:
+        return []
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -116,10 +143,6 @@ def remove_message(message_id):
     except Exception as e:
         print("Error removing message:", e)
     return redirect(url_for('chat'))
-
-
-
-#Code goes above here
 
 if __name__ == '__main__':
     app.run(debug=True)
