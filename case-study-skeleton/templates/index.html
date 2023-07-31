@@ -4,34 +4,80 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <title>main page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Ukko/Celiac</title>
     <style>  
         body {
-            background-color: #FDF3D0; 
-            font-family: "Roboto", sans-serif; 
+            font-family: "Montserrat", sans-serif;
             text-align: center;
-            margin-top: 70px; 
+            margin-top: 70px;
+            line-height: 1.6;
+            background-color: #FDF3D0;
         }
 
         .navbar {
-            background-color: #edd328; 
+            background-color: #edd328;
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: #000000; 
+            color: #000000;
         }
 
         .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #A0A0A0; 
+            color: #A0A0A0;
         }
-</style>
+
+        /* Updated style for hero image and button */
+        #hero-section {
+            background-image: url("static/css/flourimg4.jpg");
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+
+        #get-started-btn {
+            background-color: #e2bd2f;
+            color: #ffffff;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #get-started-btn:hover {
+            background-color: #c7a126;
+        }
+
+        /* Add more spacing between sections */
+        section {
+            padding: 50px 0;
+        }
+
+        /* Add a footer */
+        footer {
+            background-color: #edd328;
+            padding: 20px 0;
+            color: #000000;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
-        <!-- Bootstrap Navbar -->
+    <!-- Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Ukko/Celiac</a>
+            <a class="navbar-brand" >Ukko/Celiac</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,32 +85,69 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">About Us</a>
+                        <a class="nav-link" href="#about-section">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href='/questions'>Questions Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/'>Team</a>
+                        <a class="nav-link" href="#team-section">Team</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- <h1 style="margin-top: 50px;">Welcome </h1> -->
+   
+    <section id="hero-section">
+        <div>
+            <p style="font-size: 24px;">Introducing UKKO/Celiac - Your Gateway to Gluten-Free Bliss!</p>
+            <a id="get-started-btn" href='/signin'>Get Started</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-section">
+        <div class="container">
+            <h3 style="margin-bottom: 30px;">ABOUT US</h3>
+            <p>At UKKO/Celiac, we are on a mission to revolutionize the gluten-free market and provide people with celiac disease accessible and affordable options for their dietary needs. We take pride in offering the safest gluten-free flour meticulously crafted to cater to your health and culinary desires. Our website is a haven of creativity, where you can explore a treasure trove of recipes specially designed to make the most of our premium gluten-free flour. We understand the challenges faced by those with celiac disease and have made it our passion to embrace entrepreneurship with a purpose.</p>
+            <p>UKKO/Celiac is not just a company; it's a movement to break barriers and redefine gluten-free living. Empower yourself with delicious treats and unleash your culinary creativity with UKKO/Celiac - the ultimate destination for gluten-free delights! Join us in reshaping the future of gluten-free indulgence!</p>
+        </div>
+    </section>
+    <hr>
 
 
+    <!-- Team Section -->
+    <section id="team-section">
+        <div class="container">
+            <h3 style="margin-bottom: 30px;">MEET THE TEAM</h3>
+            <p>This is the team section</p>
+        </div>
+    </section>
 
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>Contact us at info@ukkoceliac.com | Follow us on social media: @ukkoceliac</p>
+        </div>
+    </footer>
 
-
-
-
-
-
-
-
- <!-- Bootstrap JS -->
+    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Smooth scrolling to sections when clicking on navbar links
+        $(document).ready(function() {
+            // Select navbar links with data-scroll="true" attribute
+            $('a[data-scroll="true"]').on('click', function(event) {
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
