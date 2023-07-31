@@ -28,7 +28,6 @@
             color: #A0A0A0;
         }
 
-        /* Updated style for hero image and button */
         #hero-section {
             background-image: url("static/css/flourimg4.jpg");
             background-size: cover;
@@ -61,7 +60,6 @@
             opacity: 1;
         }
 
-        /* Add more spacing between sections */
         section {
             padding: 50px 0;
             opacity: 0;
@@ -74,7 +72,6 @@
             transform: translateY(0);
         }
 
-        /* Add a footer */
         footer {
             background-color: #F4D857;
             padding: 20px 0;
@@ -172,24 +169,22 @@
     <section id="team-section">
         <div class="container">
             <h3 style="margin-bottom: 30px;">MEET THE TEAM</h3>
+            <br></br>
             <div class="row">
                 <div class="col-md-3 team-member">
-                    <img src="path-to-team-member1.jpg" alt="Team Member 1">
                     <h4>Lauren</h4>
                     <p>description.</p>
                 </div>
                 <div class="col-md-3 team-member">
-                    <img src="path-to-team-member2.jpg" alt="Team Member 2">
+                   
                     <h4>Tal</h4>
                     <p>description</p>
                 </div>
                 <div class="col-md-3 team-member">
-                    <img src="path-to-team-member3.jpg" alt="Team Member 3">
                     <h4>Malak</h4>
                     <p>description</p>
                 </div>
                 <div class="col-md-3 team-member">
-                    <img src="path-to-team-member4.jpg" alt="Team Member 4">
                     <h4>Ella</h4>
                     <p>description</p>
                 </div>
@@ -209,58 +204,66 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('a[data-scroll="true"]').on('click', function(event) {
-                var target = $($(this).attr('href'));
-                if (target.length) {
-                    event.preventDefault();
-                    $('html, body').stop().animate({
-                        scrollTop: target.offset().top
-                    }, 1000, 'easeInOutExpo');
+    $(document).ready(function() {
+        // Smooth scrolling for links
+        $('a[data-scroll="true"]').on('click', function(event) {
+            var target = $($(this).attr('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top
+                }, 1000, 'swing'); // Change easing function to 'swing'
+            }
+        });
+
+        // Function to check if an element is in the viewport
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+              rect.top >= 0 &&
+              rect.left >= 0 &&
+              rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+              rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Function to update section visibility
+        function updateSectionVisibility() {
+            $('section').each(function() {
+                if (isElementInViewport(this)) {
+                    $(this).addClass('visible');
                 }
             });
+        }
 
-            function isElementInViewport(el) {
-                var rect = el.getBoundingClientRect();
-                return (
-                  rect.top >= 0 &&
-                  rect.left >= 0 &&
-                  rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                  rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-            }
+        // Function to update team member visibility
+        function updateTeamVisibility() {
+            $('.team-member').each(function() {
+                if (isElementInViewport(this)) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
 
-            function updateSectionVisibility() {
-                $('section').each(function() {
-                    if (isElementInViewport(this)) {
-                        $(this).addClass('visible');
-                    }
-                });
-            }
+        // Initial update
+        updateSectionVisibility();
+        updateTeamVisibility();
 
-            function updateTeamVisibility() {
-                $('.team-member').each(function() {
-                    if (isElementInViewport(this)) {
-                        $(this).addClass('visible');
-                    }
-                });
-            }
-
+        // Scroll event handler
+        $(window).on('scroll', function() {
             updateSectionVisibility();
             updateTeamVisibility();
-            $(window).on('scroll', function() {
-                updateSectionVisibility();
-                updateTeamVisibility();
 
-                // Animate the navbar on scroll
-                var scrolled = $(window).scrollTop();
-                if (scrolled > 50) {
-                    $('.navbar').addClass('scrolled');
-                } else {
-                    $('.navbar').removeClass('scrolled');
-                }
-            });
+            // Animate the navbar on scroll
+            var scrolled = $(window).scrollTop();
+            if (scrolled > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>

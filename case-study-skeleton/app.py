@@ -100,27 +100,33 @@ def signup():
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
+    if 'user' not in login_session:
+        # Redirect to the signin page or show an error message
+        return redirect(url_for('signin'))
+
     if request.method == 'POST':
         message = request.form['message']
         if message.strip() != "":
             UID = login_session['user']['localId']
-            my_user=db.child("users").child(UID).get().val()
+            my_user = db.child("users").child(UID).get().val()
             sender = my_user["name"]
-            my_email=my_user["email"]
-            store_chat_message(sender, message,my_email)
+            my_email = my_user["email"]
+            store_chat_message(sender, message, my_email)
+
     messages = get_chat_messages()
     return render_template('chat.html', messages=messages, login_session=login_session)
 
 def store_chat_message(sender, message, my_email):
     try:
-
-        new_message_ref = db.child("messages").push({"sender": sender, "content": message, "email":my_email})
+        new_message_ref = db.child("messages").push({"sender": sender, "content": message, "email": my_email})
         print(new_message_ref)
-        message_id = new_message_ref["name"]  
+        message_id = new_message_ref["name"]
         print(message_id)
         db.child("messages").child(message_id).update({"message_id": message_id})
     except Exception as e:
         print("Error storing message:", e)
+
+
 
 def get_chat_messages():
     try:
