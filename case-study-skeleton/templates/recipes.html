@@ -1,117 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recipes</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <style>
-        body {
-            background-color: #FDF3D0; 
-            font-family: "Roboto", sans-serif; 
-            text-align: center;
-            margin-top: 70px; 
-        }
-
-        .navbar {
-            background-color: #edd328; 
-        }
-
-        .navbar-brand, .navbar-nav .nav-link {
-            color: #000000; 
-        }
-
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #A0A0A0; 
-        }
-
-        .recipe-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #FFFFFF; /* White squre background */
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .recipe-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .recipe-description {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .recipe-image {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        button {
-            background-color: #edd328; 
-            color: #000000; 
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #A0A0A0;
-        }
-    </style>
+    <title>Recipe Search App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Ukko/Celiac</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/chat'>Chat Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='/questions'>Questions Page</a>
-                    </li>
+    <h1>Recipe Search App</h1>
+    <form action="/recipes" method="post">
+        <label for="food_query">Enter Food Item:</label>
+        <input type="text" id="food_query" name="food_query" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if recipes is not none %}
+    <h2 class="results-heading">Results for '{{ query }}':</h2>
+    <ul>
+        {% for recipe in recipes %}
+            <li class="recipe-item">
+                <h3 class="recipe-title">{{ recipe['label'] }}</h3>
+                <p class="ingredients-label">Ingredients:</p>
+                <ul class="ingredient-list">
+                    {% for ingredient in recipe['ingredients'] %}
+                        <li class="ingredient">{{ ingredient['text'] }}</li>
+                    {% endfor %}
                 </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Recipe Content Section -->
-    <div class="container recipe-container">
-        <h1 class="recipe-title">Delicious Recipe Title</h1>
-        <img src="https://via.placeholder.com/300" alt="Recipe Image" class="recipe-image">
-        <p class="recipe-description">recipe description</p>
-        <p class="recipe-description">recipe description</p>
-        <p class="recipe-description">recipe description </p>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <p class="instructions-label">Instructions and further information in the link below:</p>
+                <p class="recipe-link"><a href="{{ recipe['url'] }}" target="_blank">{{ recipe['url'] }}</a></p>
+                <img class="recipe-image" src="{{ recipe['image'] }}" alt="{{ recipe['label'] }}">
+            </li>
+        {% endfor %}
+    </ul>
+    {% elif query %}
+        <p class="no-results">No recipes found for '{{ query }}'.</p>
+    {% endif %}
 </body>
 </html>
