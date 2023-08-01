@@ -10,11 +10,26 @@
 
     <!-- Custom CSS -->
     <style>
+          @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Apply the animation to the content section */
+    #content-section {
+        animation: fadeIn 1.5s;
+    }
         body {
             background-color: #FDF3D0;
-            font-family: "Roboto", sans-serif;
+            font-family: "Roboto-thin", sans-serif;
             text-align: center;
             margin-top: 70px;
+             animation: fadeIn 1.5s;
+
         }
          .navbar-logo {
             max-width: 50px; 
@@ -171,13 +186,13 @@
         </div>
     </nav>
 <br></br>
-    <!-- Content Section -->
-    <div class="container">
-        <h1>Welcome!</h1>
-        <p>Descover your cooking potential </p>
-        <a href="/chat" id="chat_page"><button>Chat Page</button></a>
-        <a href="/recipes" id="recipes_page"><button>Recipes Page</button></a>
-    </div>
+<!-- Content Section -->
+<div class="container">
+    <h1>Welcome!</h1>
+    <p>Discover your cooking potential</p>
+    <a href="/chat" id="chat_page"><button>Chat Page</button></a>
+    <a href="/recipes" id="recipes_page"><button>Recipes Page</button></a>
+</div>
 
     <!-- Picture Section -->
     <section id="picture-section">
