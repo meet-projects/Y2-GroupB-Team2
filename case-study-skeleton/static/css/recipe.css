@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #edd328;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.recipe-box {
+    position: relative;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #FDF3D0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+.recipe-box h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.recipe-box p {
+    margin-bottom: 5px;
+}
+
+.recipe-box ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.recipe-box ol {
+    float: left;
+    width: 60%; 
+    padding-right: 20px;
+}
+
+.recipe-box img {
+    width: 40%; 
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    float: right;
+}
+
+.instr{
+    position: absolute;
+    bottom:10px;
+    right: 10px;
+
+}   
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: absolute;
+    bottom:10px;
+    left: 10px;
+  }
+  
+  .like-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    color: grey;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .like-button:hover,
+  .comment-button:hover {
+    color: #ff0000;
+  }
+  
+  .like-button.liked {
+    color: #ff0000;
+  }

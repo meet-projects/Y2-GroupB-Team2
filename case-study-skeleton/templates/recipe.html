@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/recipe.css">
+    <style type="text/css" >
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');
+    </style>
+    <script type="text/javascript">
+    function toggleLike(button) {
+        button.classList.toggle("liked")
+    }
+</script>
+</head>
+<body>
+    <h1>Recipes</h1>
+    {% if recipes is not none %}
+        <div class="recipe-container">
+            {% for recipe in recipes %}
+                <div class="recipe-box">
+                    <h3>{{ recipe['label'] }}</h3>
+                    <img id="myBtn" src="{{ recipe['image'] }}" alt="{{ recipe['label'] }}">
+                    <div id="myModal" class="modal">
+                    <p>Ingredients:</p>
+                    <ul>
+                        {% for ingredient in recipe['ingredients'] %}
+                            <li>{{ ingredient['text'] }}</li>
+                        {% endfor %}
+                    </ul>
+                    <ol>
+                        {% for instruction in recipe['instructions'] %}
+                            <li>{{ instruction['string'] }}</li>
+                        {% endfor %}
+                    </ol>
+
+                    <div class="instr">
+                    <p><a href="{{ recipe['url'] }}" target="_blank"><button>Instructions</button></a></p>
+                    </div>
+
+                    <div class="post-footer">
+                    <div class="like-button" onclick="toggleLike(this)">
+                    <i class="fas fa-heart">
+                        
+                    </i>
+                    </div>
+                    </div>
+
+                    </div>
+                </div>
+                {% if loop.index % 2 == 0 %}
+                    <div style="clear: both;"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% elif query %}
+        <p>No recipes found for '{{ query }}'.</p>
+    {% endif %}
+</body>
+</html>

@@ -35,15 +35,20 @@ def home():
 def questions():
     return render_template('/questions.html')
 
-@app.route("/recipes", methods=["GET", "POST"])
-def recipes():
-    recipes = None
+@app.route("/search", methods=["GET", "POST"])
+def index():
     if request.method == "POST":
-        food_query = request.form["food_query"]
-        if food_query.strip():
-            recipes = get_recipes(food_query)
-    return render_template("recipes.html", recipes=recipes, query=request.form.get("food_query", ""))
+        food_query = request.form["food_query"]     
+        try:
+            return redirect(url_for('get_recipes', food_query = food_query))
+        
+        except:
+            return render_template("search.html", error = "Couldn't send prompt through, please try again!")
 
+    return render_template("search.html")
+
+
+@app.route("/recipe/<string:food_query>", methods=["GET", "POST"])
 def get_recipes(food_query):
     base_url = "https://api.edamam.com/search"
     params = {
@@ -61,9 +66,9 @@ def get_recipes(food_query):
             for ingredient in recipe["ingredients"]:
                 if "flour" in ingredient["text"].lower():
                     ingredient["text"] = ingredient["text"].replace("flour", "'Ukko safe flour'")
-        return recipes
+        return render_template("recipe.html", recipes=recipes, query=request.form.get("food_query", ""))
     else:
-        return []
+        return redirect(url_for('search'))
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
