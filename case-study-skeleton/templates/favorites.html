@@ -13,17 +13,17 @@
 </script>
 </head>
 <body>
-    <h1>Recipes</h1>
+    <h1>Favorite recipes</h1>
     {% if recipes is not none %}
         <div class="recipe-container">
             {% for recipe in recipes %}
                 <div class="recipe-box">
-                    <h3>{{ recipe['label'] }}</h3>
-                    <img id="myBtn" src="{{ recipe['image'] }}" alt="{{ recipe['label'] }}">
+                    <h3>{{ favorite_recipe['title'] }}</h3>
+                    <img id="myBtn" src="{{ favorite_recipe['image'] }}" alt="{{ favorite_recipe['title'] }}">
                     <div id="myModal" class="modal">
                     <p>Ingredients:</p>
                     <ul>
-                        {% for ingredient in recipe['ingredients'] %}
+                        {% for ingredient in favorite_recipe['ingredient'] %}
                             <li>{{ ingredient['text'] }}</li>
                         {% endfor %}
                     </ul>
@@ -31,20 +31,11 @@
                     <br>
 
                     <div class="instr">
-                        <p><a href="{{ recipe['url'] }}" target="_blank"><button>Instructions</button></a></p>
+                        <p><a href="{{ favorite_recipe['url'] }}" target="_blank"><button>Instructions</button></a></p>
                     </div>
 
                     <div class="post-footer">
-                        <form method="post" action="/recipe/<string:food_query>">
-                            <input type="hidden" name="title" value="{{ recipe['label'] }}">
-                            <input type="hidden" name="image" value="{{ recipe['image'] }}">
-                            <input type="hidden" name="ingredient" value="{{ recipe['ingredients'] }}">
-                            <input type="hidden" name="url" value="{{ recipe['url'] }}">
-                            <input type="submit" name="like" class="like-button" onclick="toggleLike(this)">
-                                <i class="fas fa-heart">
-                                </i>
-                            </input>
-                        </form>
+
                     </div>
 
                     </div>

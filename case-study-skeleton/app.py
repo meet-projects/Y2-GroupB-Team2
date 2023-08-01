@@ -57,6 +57,17 @@ def get_recipes(food_query):
         "app_key": EDAMAM_API_KEY,
     }
 
+    if request.method == "POST":
+        title = request.form["title"]
+        image = request.form["image"]
+        ingredient = request.form["ingredient"]
+        url = request.form["url"]
+        UID = login_session["user"]["localId"]
+        favorite_recipe = {"title" : title, "image" : image, "ingredient" : ingredient, "url" : url}
+        db.child("users").child(UID).child("Recipes").push(favorite_recipe)
+        # except:
+        #     error="Authentication failed"
+
     response = requests.get(base_url, params=params)
     data = response.json()
 
@@ -154,6 +165,16 @@ def remove_message(message_id):
     except Exception as e:
         print("Error removing message:", e)
     return redirect(url_for('chat'))
+
+@app.route('/favorites', methods=['GET', 'POST'])
+def favorites():
+    try:
+        favorite_recipe = db.child("users").child("Recipes").get().val()
+        return render_template("favorites.html", favorite_recipe=favorite_recipe)
+    except:
+        error = "Authentication failed"
+
+    return render_template("favorites.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
