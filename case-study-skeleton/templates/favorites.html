@@ -14,24 +14,25 @@
 </head>
 <body>
     <h1>Favorite recipes</h1>
-    {% if recipes is not none %}
+    {% if favorite_recipe is not none %}
         <div class="recipe-container">
-            {% for recipe in recipes %}
+            {% for recipe in favorite_recipe %}
                 <div class="recipe-box">
-                    <h3>{{ favorite_recipe['title'] }}</h3>
-                    <img id="myBtn" src="{{ favorite_recipe['image'] }}" alt="{{ favorite_recipe['title'] }}">
+                    <h3>{{ favorite_recipe[recipe]['title'] }}</h3>
+                    <img id="myBtn" src="{{ favorite_recipe[recipe]['image'] }}" alt="{{ favorite_recipe[recipe]['title'] }}">
                     <div id="myModal" class="modal">
                     <p>Ingredients:</p>
                     <ul>
-                        {% for ingredient in favorite_recipe['ingredient'] %}
-                            <li>{{ ingredient['text'] }}</li>
+
+                        {% for ingredient in favorite_recipe[recipe]['ingredient'] %}
+                            <li>{{ingredient['text']}}</li>
                         {% endfor %}
                     </ul>
 
                     <br>
 
                     <div class="instr">
-                        <p><a href="{{ favorite_recipe['url'] }}" target="_blank"><button>Instructions</button></a></p>
+                        <p><a href="{{ favorite_recipe[recipe]['url'] }}" target="_blank"><button>Instructions</button></a></p>
                     </div>
 
                     <div class="post-footer">

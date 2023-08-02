@@ -7,8 +7,10 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');
     </style>
     <script type="text/javascript">
-    function toggleLike(button) {
-        button.classList.toggle("liked")
+    function toggleLike(icon) {
+        icon.classList.toggle("liked");
+        var form = icon.closest("form");
+        form.submit();
     }
 </script>
 </head>
@@ -40,9 +42,8 @@
                             <input type="hidden" name="image" value="{{ recipe['image'] }}">
                             <input type="hidden" name="ingredient" value="{{ recipe['ingredients'] }}">
                             <input type="hidden" name="url" value="{{ recipe['url'] }}">
-                            <input type="submit" name="like" class="like-button" onclick="toggleLike(this)">
-                                <i class="fas fa-heart">
-                                </i>
+                            <i class="fas fa-heart like-button" onclick="toggleLike(this)">
+                            </i>
                             </input>
                         </form>
                     </div>

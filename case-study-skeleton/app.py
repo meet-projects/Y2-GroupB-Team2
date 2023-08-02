@@ -61,10 +61,12 @@ def get_recipes(food_query):
         title = request.form["title"]
         image = request.form["image"]
         ingredient = request.form["ingredient"]
+        print(ingredient)
         url = request.form["url"]
         UID = login_session["user"]["localId"]
-        favorite_recipe = {"title" : title, "image" : image, "ingredient" : ingredient, "url" : url}
+        favorite_recipe = {"title" : title, "image" : image, "ingredient" : eval(ingredient), "url" : url}
         db.child("users").child(UID).child("Recipes").push(favorite_recipe)
+        return redirect(url_for('favorites'))
         # except:
         #     error="Authentication failed"
 
@@ -169,10 +171,12 @@ def remove_message(message_id):
 @app.route('/favorites', methods=['GET', 'POST'])
 def favorites():
     try:
-        favorite_recipe = db.child("users").child("Recipes").get().val()
+        UID = login_session["user"]["localId"]
+        favorite_recipe = db.child("users").child(UID).child("Recipes").get().val()
+        print(favorite_recipe)
         return render_template("favorites.html", favorite_recipe=favorite_recipe)
-    except:
-        error = "Authentication failed"
+    except Exception as e:
+        return str(e)
 
     return render_template("favorites.html")
 
