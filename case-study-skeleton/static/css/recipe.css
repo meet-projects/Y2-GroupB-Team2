@@ -99,3 +99,62 @@ h1 {
   .like-button.liked {
     color: #ff0000;
   }
+
+/* Custom Navbar Styles */
+.navbar {
+    display: flex; /* Display the navbar items in a row */
+    justify-content: space-between; /* Align the items at the ends of the navbar */
+    align-items: center; /* Vertically center the items in the navbar */
+    background-color: #edd328;
+    font-family: "Roboto-thin", sans-serif;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    padding: 10px 20px; /* Add some padding to the navbar */
+}
+
+.navbar-brand {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #A0A0A0;
+}
+
+/* Style the navigation links */
+.navbar-nav {
+    display: flex; /* Display the links in a row */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px; /* Add some space between the links */
+}
+
+.nav-link {
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #A0A0A0;
+}
+
+/* Style the active link */
+.nav-item.active .nav-link {
+    color: #A0A0A0;
+}
+
+  #arrow-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            font-color: black;
+        }

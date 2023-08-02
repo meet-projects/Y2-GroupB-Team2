@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>Recipes</title>
+    
     <link rel="stylesheet" type="text/css" href="../static/css/recipe.css">
     <style type="text/css" >
+
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');
     </style>
     <script type="text/javascript">
@@ -12,9 +14,57 @@
         var form = icon.closest("form");
         form.submit();
     }
+
 </script>
+<style>
+        .navbar {
+            background-color: #edd328;
+            font-family: "Roboto-thin", sans-serif;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+            
+
+        }
+        
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000;
+        }
+
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #A0A0A0;
+        }
+
+    </style>
 </head>
 <body>
+
+     <!-- Bootstrap Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <a class="navbar-brand" href="/">
+                <img src="static/css/logo111.png" alt="Ukko/Celiac Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home" data-scroll="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chat" data-scroll="true">Chat Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions" data-scroll="true">Questions Page</a>
+                    </li>
+
+                </ul>
+        </div>
+    </nav> -->
+    <a href="/home" id="arrow-button"><i class="fas fa-arrow-circle-right">Home </i></a>
+    <a href="/favorites">Favorites</a>
     <h1>Recipes</h1>
     {% if recipes is not none %}
         <div class="recipe-container">
@@ -59,4 +109,8 @@
         <p>No recipes found for '{{ query }}'.</p>
     {% endif %}
 </body>
+  <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

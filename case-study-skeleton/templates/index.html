@@ -23,6 +23,7 @@
             
 
         }
+        
 
         .navbar-brand, .navbar-nav .nav-link {
             color: #000000;
@@ -256,7 +257,7 @@
             });
         }
 
-        // Initial update
+        // Initial update important 
         updateSectionVisibility();
         updateTeamVisibility();
 
@@ -265,13 +266,7 @@
             updateSectionVisibility();
             updateTeamVisibility();
 
-            // Animate the navbar on scroll
-            var scrolled = $(window).scrollTop();
-            if (scrolled > 50) {
-                $('.navbar').addClass('scrolled');
-            } else {
-                $('.navbar').removeClass('scrolled');
-            }
+            
         });
     });
 </script>
